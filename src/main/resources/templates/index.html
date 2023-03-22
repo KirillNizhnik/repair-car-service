@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlineServ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body class="body">
+<header>
+    <div class="container header-container">
+        <a th:href = "@{/}" class="header-logo">
+            <div class="logo-header">
+                <svg class="icon-logo" width="34.25px" height="34.25px">
+                    <use href="/images/icons.svg#icon-logo"></use>
+                </svg>
+                OnlineServ
+            </div>
+        </a>
+        <div class="header-container-right">
+            <ul class="header-nav list ">
+                <li class="header-nav-home "><a class="header-home link " href="/">Home</a>
+                </li>
+                <li class=" header-nav-about "><a class="header-about link " href="#our-service-index">About Us</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</header>
+<main>
+    <section class="hero">
+        <div class="container">
+            <div class="container-wrap">
+                <div class="container-left">
+                    <h1 class="title">OnlineServ</h1>
+                    <h2 class="title-descr">Сервис контроля починкой автомобиля</h2>
+                    <p class="hero-descr">Наш онлайн-сервис для контроля починкой автомобиля - это удобный инструмент,
+                        который
+                        поможет
+                        владельцам автомобилей контролировать и управлять техническим обслуживанием и починкой своих
+                        машин.</p>
+                    <div class="hero-btns" >
+                        <form  th:method="GET" th:action="@{/user/login-user}">
+                            <button  type="submit" target="_blank" class="button">Я - пользователь</button>
+                        </form>
+                        <form th:method="GET" th:action="@{/service/login-service}">
+                            <button  type="submit" target="_blank" class="button" >Я - сервис</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container-right" >
+                    <img th:src="@{/images/hero-img.png}" width="746" height="746" alt="hero-img" src="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="our-service-index" class="our-service">
+        <div class="container">
+            <h2 class="title-our-service">Our Service </h2>
+            <p class="descr-our-service"> We turn information into actionable insights We work to understand your issues
+                and are driven to ask better questions in the pursuit of making work.</p>
+            <ul class="our-service-list list">
+                <li class="our-service-li">
+                    <div class="our-service-icons our-service-icons-1">
+                        <svg class="icon-service-icon" width="56.49px" height="56.55px">
+                            <use href="./images/icons.svg#icon-icon-1"></use>
+                        </svg>
+                    </div>
+                    <h3 class="title-list">Order Management</h3>
+                    <p class="desr-list">Наш сервис предоставляет функции для планирования и отслеживания регулярного
+                        технического обслуживания, включая замену масла, фильтров, тормозных колодок и т.д. </p>
+                </li>
+                <li class="our-service-li">
+                    <div class="our-service-icons our-service-icons-2">
+                        <svg class="icon-service-icon" width="56.49px" height="56.55px">
+                            <use href="./images/icons.svg#icon-icon-2"></use>
+                        </svg>
+                    </div>
+                    <h3 class="title-list">Social Assistant</h3>
+                    <p class="desr-list">Мы также предлагаем сервисы для отслеживания расходов на техническое
+                        обслуживание, что позволяет нашим пользователям экономить деньги и время.
+                    </p>
+                </li>
+                <li class="our-service-li">
+                    <div class="our-service-icons our-service-icons-3">
+                        <svg class="icon-service-icon" width="56.49px" height="56.55px">
+                            <use href="./images/icons.svg#icon-icon-3"></use>
+                        </svg>
+                    </div>
+                    <h3 class="title-list">Smart Trading Modules</h3>
+                    <p class="desr-list">Мы предоставляем информацию о рейтинге мастеров и сервисов, их ценовой политике
+                        и отзывах от других пользователей, что помогает нашим пользователям выбрать наилучший вариант
+                        для починки своих автомобилей.
+                    </p></li>
+                <li class="our-service-li">
+                    <div class="our-service-icons our-service-icons-4">
+                        <svg class="icon-service-icon" width="56.49px" height="56.55px">
+                            <use href="./images/icons.svg#icon-icon-4"></use>
+                        </svg>
+                    </div>
+                    <h3 class="title-list">Crypto Platform</h3>
+                    <p class="desr-list">Наш сервис также предоставляет функции для отслеживания и контроля починки
+                        автомобиля, что поможет владельцам автомобилей эффективно управлять своими автомобилями.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container ">
+            <div class="footer-container">
+                <div class="logo-header">
+                    <svg class="icon-logo" width="34.25px" height="34.25px">
+                        <use th:href="@{/images/icons.svg#icon-logo}"></use>
+                    </svg>
+                    OnlineServ
+                </div>
+                <ul class="footer-nav link list ">
+                    <li class="footer-nav-email footer-nav-li"><a class="footer-email link "
+                                                                  href="mailto:support@onliserv.com ">support@onliserv.com</a>
+                    </li>
+                    <li class=" footer-nav-tel footer-nav-li"><a class="footer-tel link " href="tel:+380943833399 ">0966666666</a>
+                    </li>
+                    <li class=" footer-nav-geo footer-nav-li"><a class="footer-geo link " href="https://goo.gl/maps/JHLiNg9W73dXYY6U6C">Hlukhiv,
+                        Ukraine</a>
+                    </li>
+                </ul>
+                <ul class="footer-soc-list list">
+                    <li class="footer-soc-item">
+                        <a href="https://uk-ua.facebook.com/ " class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-facebook}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-soc-item">
+                        <a href="https://twitter.com/?lang=ru" class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-twitter}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-soc-item">
+                        <a href="https://www.instagram.com/" class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-instagram}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-soc-item">
+                        <a href="https://www.linkedin.com/feed/" class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-pinterset}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <p> © 2023 OnlineServ. - All rights reserved.</p>
+                <ul class="footer-descr">
+                    <li class="footer-descr-li"><a class="footer-descr-a" href="#">Privacy</a></li>
+                    <li class="footer-descr-li"><a class="footer-descr-a" href="#">Security</a></li>
+                    <li class="footer-descr-li"><a class="footer-descr-a" href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</main>
+
+
+
+
+
+</body>
+</html>

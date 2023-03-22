@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlineServ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body class="body">
+<header>
+    <div class="container header-container">
+        <a th:href="@{/}" class="header-logo">
+            <div class="logo-header">
+                <svg class="icon-logo" width="34.25px" height="34.25px">
+                    <use th:href="@{/images/icons.svg#icon-logo}"></use>
+                </svg>
+                OnlineServ
+            </div>
+        </a>
+        <div class="header-container-right">
+            <ul class="header-nav list ">
+                <li class="header-nav-home "><a class="header-home link " th:href="@{/}">Home</a>
+                </li>
+                <li class=" header-nav-about "><a class="header-about link " th:href="@{/#our-service-index}">About Us</a>
+                </li>
+                <li class=" header-nav-service "><a class="header-service link " th:href="@{/}">Service</a>
+                </li>
+            </ul>
+            <div class="header-buttons">
+                <a th:href="@{/service/login-service}" target="_self" type="button" class="login-btn js-open-menu button" >
+                    Log In
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="">
+        <div class="container">
+            <div class="login-service">
+                <div class="modal-container ">
+                    <p class="modal-title title">Registration Service</p>
+                    <form class="modal-form" th:method="post" th:action="@{/service/registration-service}" th:object="${service}">
+                        <div class="modal-form-wrap">
+                            <label class="modal-form-label" for="modal-name">Name </label>
+                            <input type="text" name="name"
+                                   placeholder=""
+                                   required="" class="modal-form-input" id="modal-name" th:field="*{name}">
+                        </div>
+                        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+                        <div class="modal-form-wrap">
+                            <label class="modal-form-label" for="modal-login">Login</label>
+                            <input type="login" name="login"
+                                   placeholder="" required=""
+                                   class="modal-form-input" id="modal-login" th:field="*{login}">
+                        </div>
+                        <div style="color:red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login Error</div>
+
+                        <div class="modal-form-wrap">
+                            <label class="modal-form-label" for="modal-password">Password</label>
+                            <input type="password" name="password"
+                                   placeholder=""
+                                   required="" class="modal-form-input" id="modal-password" th:field="*{password}">
+                        </div>
+                        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+
+                        <div class="modal-form-bottom">
+                            <div class="modal-form-privacy-policy">
+
+                                <label name="user-policy" value="" class="modal-form-privacy-policy-label">
+                                    <input type="checkbox" name="user-policy" class="modal-form-checkbox">
+                                    <span class="icon-modal"></span>
+                                    <span>I accept the terms and conditions of the &nbsp;
+                            <a href="" class="modal-form-privacy-policy-link"> Privacy
+                                Policy</a></span>
+                                </label>
+                            </div>
+                            <button
+                                    class="modal-form-btn" type="submit">Send
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container ">
+            <div class="footer-container">
+                <div class="logo-header">
+                    <svg class="icon-logo" width="34.25px" height="34.25px">
+                        <use th:href="@{/images/icons.svg#icon-logo}"></use>
+                    </svg>
+                    OnlineServ
+                </div>
+                <ul class="footer-nav link list ">
+                    <li class="footer-nav-email footer-nav-li"><a class="footer-email link "
+                                                                  href="mailto:support@onliserv.com ">support@onliserv.com</a>
+                    </li>
+                    <li class=" footer-nav-tel footer-nav-li"><a class="footer-tel link " href="tel:+380943833399 ">0966666666</a>
+                    </li>
+                    <li class=" footer-nav-geo footer-nav-li"><a class="footer-geo link " href="https://goo.gl/maps/JHLiNg9W73dXYY6U6C">Hlukhiv,
+                        Ukraine</a>
+                    </li>
+                </ul>
+                <ul class="footer-soc-list list">
+                    <li class="footer-soc-item">
+                        <a href="https://uk-ua.facebook.com/ " class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-facebook}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-soc-item">
+                        <a href="https://twitter.com/?lang=ru" class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-twitter}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-soc-item">
+                        <a href="https://www.instagram.com/" class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-instagram}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-soc-item">
+                        <a href="https://www.linkedin.com/feed/" class="footer-soc-link link">
+                            <svg class="footer-soc-icon" width="16px" height="16px">
+                                <use th:href="@{/images/icons.svg#icon-ic-pinterset}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <p> © 2023 OnlineServ. - All rights reserved.</p>
+                <ul class="footer-descr">
+                    <li class="footer-descr-li"><a class="footer-descr-a" href="#">Privacy</a></li>
+                    <li class="footer-descr-li"><a class="footer-descr-a" href="#">Security</a></li>
+                    <li class="footer-descr-li"><a class="footer-descr-a" href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</main>
+
+
+</body>
+</html>
