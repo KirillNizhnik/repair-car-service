@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://thymeleaf.org " xmlns:sec="http://www.w3.org/1999/xhtml">
+      xsi:schemaLocation="http://thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,50 +31,57 @@
             <ul class="header-nav list ">
                 <li class="header-nav-home "><a class="header-home link " th:href="@{/service/service-menu}">Home</a>
                 </li>
-                <li class=" header-nav-about "><a class="header-about link " th:href="@{/service/service-menu}">About Us</a>
+                <li class=" header-nav-about "><a class="header-about link " th:href="@{/service/service-menu}">About
+                    Us</a>
                 </li>
                 <li class=" header-nav-service "><a class="header-service link " th:href="@{/service/service-menu}">Service</a>
                 </li>
             </ul>
             <div class="header-buttons">
 
-                <form class="form-sevice-menu" th:method="POST" th:action="@{/service/logout_service}">
-                    <button type="submit">Logout</button>
-                </form>
             </div>
         </div>
     </div>
 </header>
 
 <main>
-    <section class="service-menu">
+    <section class="archive-orders">
         <div class="container">
             <div class="container-wrap">
                 <div class="container-left">
-                    <h1 style="color: crimson" th:text = "|Service name: ${carService.name}|" ></h1>
-                    <br>
-                    <h1 style="color: crimson" th:text="|Service login: ${carService.login}|"></h1>
-                    <br>
-                    <h2 class="title">SERVICE MENU</h2>
-                    <form class="form-service-menu" th:method="GET" th:action="@{/service/service-menu/users}">
-                        <h3>USERS</h3>
-                        <button type="submit">GO</button>
-                    </form>
-                    <form class="form-service-menu" th:method="GET" th:action="@{/service/service-menu/activity-orders}">
-                        <h3>ACTIVITY ORDERS</h3>
-                        <button type="submit">GO</button>
-                    </form>
+                    <form class="modal-form" th:method="post" th:action="@{/service/service-menu/set-up-a-service}"
+                          th:object="${carService}">
 
-                    <form class="form-service-menu" th:method="GET" th:action="@{/service/service-menu/create-orders}">
-                        <h3>CREATE ORDERS</h3>
-                        <button type="submit">GO</button>
-                    </form>
+                        <div class="modal-form-wrap">
+                            <label class="modal-form-label" for="modal-name">Name</label>
+                            <input type="text" name="name"
+                                   placeholder=""
+                                   required="" class="modal-form-input" id="modal-name" th:field="*{name}">
+                        </div>
+                        <div class="modal-form-wrap">
+                            <label class="modal-form-label" for="modal-telephone">Telephone</label>
+                            <input type="text" name="telephone"
+                                   placeholder=""
+                                   required="" class="modal-form-input" id="modal-telephone" th:field="*{phoneNumbers}">
+                        </div>
 
-                    <form class="form-service-menu" th:method="GET" th:action="@{/service/service-menu/set-up-a-service}">
-                        <h3>SETTING SERVICE</h3>
-                        <button type="submit">GO</button>
-                    </form>
+                        <div class="modal-form-wrap">
+                            <label class="modal-form-label" for="modal-email">Email</label>
+                            <input type="email" name="email"
+                                   placeholder=""
+                                   required="" class="modal-form-input" id="modal-email" th:field="*{email}">
+                        </div>
 
+
+                        <div class="modal-form-bottom">
+                            <button
+                                    class="modal-form-btn" type="submit">Save Info
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container-right">
+                    <img th:src="@{/images/900834.png}" width="607" height="448" alt="hero-img">
                 </div>
             </div>
         </div>
@@ -95,7 +102,8 @@
                     </li>
                     <li class=" footer-nav-tel footer-nav-li"><a class="footer-tel link " href="tel:+380943833399 ">0966666666</a>
                     </li>
-                    <li class=" footer-nav-geo footer-nav-li"><a class="footer-geo link " href="https://goo.gl/maps/JHLiNg9W73dXYY6U6C">Hlukhiv,
+                    <li class=" footer-nav-geo footer-nav-li"><a class="footer-geo link "
+                                                                 href="https://goo.gl/maps/JHLiNg9W73dXYY6U6C">Hlukhiv,
                         Ukraine</a>
                     </li>
                 </ul>
@@ -142,6 +150,5 @@
         </div>
     </footer>
 </main>
-
 </body>
 </html>

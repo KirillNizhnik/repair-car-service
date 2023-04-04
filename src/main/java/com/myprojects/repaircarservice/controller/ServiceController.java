@@ -5,6 +5,7 @@ import com.myprojects.repaircarservice.model.CarService;
 import com.myprojects.repaircarservice.model.Orders;
 import com.myprojects.repaircarservice.model.User;
 import com.myprojects.repaircarservice.security.CarServiceDetails;
+import com.myprojects.repaircarservice.service.CarServiceService;
 import com.myprojects.repaircarservice.service.OrdersService;
 import com.myprojects.repaircarservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,25 @@ public class ServiceController {
     private final UserService userService;
     private final OrdersService ordersService;
 
+    private final CarServiceService carServiceService;
+
 
     @Autowired
-    public ServiceController(UserService userService, OrdersService ordersService) {
+    public ServiceController(UserService userService, OrdersService ordersService, CarServiceService carServiceService) {
         this.userService = userService;
         this.ordersService = ordersService;
+        this.carServiceService = carServiceService;
     }
 
     @GetMapping("")
-    public String showMenu(Model model) {
-        return "/service/service-menu";
+    public String getMenuPage(Model model) {
+        CarService carService = getSessionCarService();
+        model.addAttribute("carService", carService);
+    return "/service/service-menu";
     }
 
     @GetMapping("/users")
-    public String showUsers(Model model) {
+    public String getUsersPage(Model model) {
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
 
@@ -45,7 +51,7 @@ public class ServiceController {
     }
 
     @GetMapping("/users/search")
-    public String searchUsers(@RequestParam("surname") String surname,
+    public String getSearchUsersPage(@RequestParam("surname") String surname,
                               Model model) {
         List<User> users = userService.findUsersBySurname(surname);
         model.addAttribute("users", users);
@@ -53,7 +59,7 @@ public class ServiceController {
     }
 
     @GetMapping("/activity-orders")
-    public String showActivityOrders(Model model,
+    public String getActivityOrdersPage(Model model,
                                     HttpSession httpSession){
        CarService carService = getSessionCarService();
 
@@ -66,7 +72,7 @@ public class ServiceController {
     }
 
     @GetMapping("/archive-orders")
-    public String showArchiveOrders(Model model,
+    public String getArchiveOrdersPage(Model model,
                                     HttpSession httpSession){
         CarService carService = getSessionCarService();
 
@@ -84,7 +90,7 @@ public class ServiceController {
 
 
     @GetMapping("/create-orders")
-    public String createOrdersForm(
+    public String getOrdersPage(
                                    HttpSession httpSession,
                                    Model model){
 
@@ -107,10 +113,31 @@ public class ServiceController {
         return "redirect:/service/service-menu";
     }
 
+    @GetMapping("/set-up-a-service")
+    public String getSettingPage(Model model){
+        CarService carService =getSessionCarService();
+        model.addAttribute("carService", carService);
+        return "/service/set-up";
+    }
+
+    @PostMapping("/set-up-a-service")
+    public String updateServiceProcess(@ModelAttribute("carService")CarService carService){
+        CarService sessionCarService = getSessionCarService();
+        carServiceService.update(sessionCarService, carService);
+        return "redirect:/service/service-menu/successful-update";
+    }
+
+    @GetMapping("/successful-update")
+    public String successfulUpdatePage()
+    {
+        return "/service/successful-update";
+    }
 
     private CarService getSessionCarService(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         CarServiceDetails carServiceDetails = (CarServiceDetails) principal;
         return carServiceDetails.carService();
     }
+
+
 }
